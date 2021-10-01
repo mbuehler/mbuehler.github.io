@@ -21,14 +21,14 @@
     
     <!-- Update this section based on your business requirements -->
     <script>
-      function consentGranted() {
+      $('#btnConsentGranted').click(function() {
         alert('You have agreed');
         $("#panel").slideUp("slow");
         gtag('consent', 'update', {
           'ad_storage': 'granted'
         });
       }
-      function consentDenied() {
+      $('#btnConsentDenied').click(function() {
         alert('You have denied consent');
         $("#panel").slideUp("slow");
       }
@@ -60,7 +60,8 @@
     
     <div id='panel'>
       <p>Do you consent to our cookies?</p>
-      <button onclick="consentGranted">Yes</button>
+      <button id="btnConsentDenied">No</button>
+      <button id="btnConsentGranted">Yes</button>
     </div>
   </body>
 </html>
