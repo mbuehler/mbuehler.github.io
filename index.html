@@ -26,7 +26,7 @@
       }
 
       if (document.cookie.replace(/(?:(?:^|.*;\s*)consentStatus\s*\=\s*([^;]*).*$)|^.*$/, "$1") == "granted") {
-        //alert('Granted');
+        alert('Google is watching you!');
         gtag('consent', 'update', {
           'ad_storage': 'granted',
           'analytics_storage': 'granted'
@@ -35,7 +35,7 @@
           'event': 'allow_consent'
         });
       } else {
-        //alert('Denied or Undefined');
+        alert('No Analytics for you!');
         gtag('consent', 'default', {
           'ad_storage': 'denied',
           'analytics_storage': 'denied'
@@ -109,7 +109,7 @@
         position: fixed;
         top: 0px;
         right: 0px;
-        width: 100px;
+        width: 150px;
         height: 10px;
       }
     </style>
