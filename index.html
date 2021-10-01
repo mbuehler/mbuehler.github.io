@@ -4,7 +4,23 @@
     <script>
       // Define dataLayer and the gtag function.
       window.dataLayer = window.dataLayer || [];
+      
       function gtag(){dataLayer.push(arguments);}
+      
+      function deleteAllCookies() {
+        var cookies = document.cookie.split(";");
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i];
+            var eqPos = cookie.indexOf("=");
+            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        }
+      }
+
+      function clearAndRedirect(link) {
+          deleteAllCookies();
+          document.location = link;
+      }
 
       if (document.cookie.replace(/(?:(?:^|.*;\s*)consentStatus\s*\=\s*([^;]*).*$)|^.*$/, "$1") == "granted") {
         alert('Granted');
@@ -73,6 +89,13 @@
       padding: 50px;
       display: none;
     }
+    #clearCookieLink {
+      position: fixed;
+      top: 0px;
+      right: 0px;
+      width: 50px;
+      height: 10px;
+    }
     </style>
   </head>
   <body>
@@ -86,6 +109,9 @@
       <p>Do you consent to our cookies?</p>
       <button id="btnConsentDenied">No</button>
       <button id="btnConsentGranted">Yes</button>
+    </div>
+    <div id="clearCookieLink">
+      <a href="clearAndRedirect('index.html')">Clear Cookies</a>
     </div>
   </body>
 </html>
