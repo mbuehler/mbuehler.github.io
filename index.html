@@ -27,18 +27,18 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script> 
       $(document).ready(function(){
-          $("#panel").slideDown("slow");
-      });
-      $('#btnConsentGranted').click(function() {
-        alert('You have agreed');
-        $("#panel").slideUp("slow");
-        gtag('consent', 'update', {
-          'ad_storage': 'granted'
+        $("#panel").slideDown("slow");
+        $('#btnConsentGranted').click(function() {
+          alert('You have agreed');
+          $("#panel").slideUp("slow");
+          gtag('consent', 'update', {
+            'ad_storage': 'granted'
+          });
         });
-      });
-      $('#btnConsentDenied').click(function() {
-        alert('You have denied consent');
-        $("#panel").slideUp("slow");
+        $('#btnConsentDenied').click(function() {
+          alert('You have denied consent');
+          $("#panel").slideUp("slow");
+        });
       });
     </script>
     <style> 
