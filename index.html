@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>mbuehler ghpages</title>
+    <title>mbuehler testing</title>
     <script>
       // Define dataLayer and the gtag function.
       window.dataLayer = window.dataLayer || [];
@@ -15,13 +15,14 @@
       function set_cookie(name, value) {
         document.cookie = name +'='+ value +'; Path=/;';
       }
+      
       function delete_cookie(name) {
         document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       }
 
-      function clearAndRedirect(link) {
+      function clearAndReload() {
           deleteAllCookies();
-          document.location = link;
+          location.reload();
       }
 
       if (document.cookie.replace(/(?:(?:^|.*;\s*)consentStatus\s*\=\s*([^;]*).*$)|^.*$/, "$1") == "granted") {
@@ -89,7 +90,7 @@
       });
     </script>
     <style> 
-    #panel {
+    #cookiePanel {
       padding: 5px;
       text-align: center;
       background-color: #e5eecc;
@@ -111,15 +112,18 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5WVL674"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <h1>mbuehler ghpages</h1>
-    
-    <div id='panel'>
+    <div id='cookiePanel'>
       <p>Do you consent to our cookies?</p>
       <button id="btnConsentDenied">No</button>
       <button id="btnConsentGranted">Yes</button>
     </div>
     <div id="clearCookieLink">
-      <a href="javascript:clearAndRedirect('index.html')">Clear Cookies</a>
+      <a href="javascript:clearAndReload();">Clear Cookies</a>
+    </div>
+    
+    <h1>mbuehler testing</h1>
+    <div style='height:1000;'>
+      &nbsp;
     </div>
   </body>
 </html>
