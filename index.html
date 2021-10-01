@@ -36,6 +36,9 @@
             gtag('consent', 'update', {
               'ad_storage': 'granted'
             });
+            dataLayer.push({
+              'event': 'update_consent'
+            });
             document.cookie = "consentCookie=true; path=/";
           });
           $('#btnConsentDenied').click(function() {
