@@ -36,13 +36,13 @@
             gtag('consent', 'update', {
               'ad_storage': 'granted'
             });
+            document.cookie = "consentCookie=true; path=/";
           });
           $('#btnConsentDenied').click(function() {
             alert('You have denied consent');
             $("#panel").slideUp("slow");
+            document.cookie = "consentCookie=true; path=/";
           });
-          
-          document.cookie = "consentCookie=true; path=/";
         }
         
       });
