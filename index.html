@@ -24,7 +24,11 @@
     <!-- End Google Tag Manager -->
     
     <!-- Update this section based on your business requirements -->
-    <script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script> 
+      $(document).ready(function(){
+          $("#panel").slideDown("slow");
+      });
       $('#btnConsentGranted').click(function() {
         alert('You have agreed');
         $("#panel").slideUp("slow");
@@ -36,12 +40,6 @@
         alert('You have denied consent');
         $("#panel").slideUp("slow");
       });
-    </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script> 
-    $(document).ready(function(){
-        $("#panel").slideDown("slow");
-    });
     </script>
     <style> 
     #panel {
