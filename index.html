@@ -6,14 +6,25 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
 
-      gtag('consent', 'default', {
-        'ad_storage': 'denied',
-        'analytics_storage': 'denied'
-      });
-
-      dataLayer.push({
-        'event': 'default_consent'
-      });
+      if (document.cookie.replace(/(?:(?:^|.*;\s*)consentStatus\s*\=\s*([^;]*).*$)|^.*$/, "$1") == "granted") {
+        alert('Granted');
+        gtag('consent', 'update', {
+          'ad_storage': 'granted',
+          'analytics_storage': 'granted'
+        });
+        dataLayer.push({
+          'event': 'allow_consent'
+        });
+      } else {
+        alert('Denied or Undefined');
+        gtag('consent', 'default', {
+          'ad_storage': 'denied',
+          'analytics_storage': 'denied'
+        });
+        dataLayer.push({
+          'event': 'default_consent'
+        });
+      } 
     </script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -41,11 +52,13 @@
               'event': 'update_consent'
             });
             document.cookie = "consentCookie=true; path=/";
+            document.cookie = "consentStatus=granted; path=/";
           });
           $('#btnConsentDenied').click(function() {
             alert('You have denied consent');
             $("#panel").slideUp("slow");
             document.cookie = "consentCookie=true; path=/";
+            document.cookie = "consentStatus=denied; path=/";
           });
         }
         
