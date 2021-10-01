@@ -22,11 +22,32 @@
     <!-- Update this section based on your business requirements -->
     <script>
       function consentGranted() {
+        alert('You have agreed');
+        $("#panel").slideUp("slow");
         gtag('consent', 'update', {
           'ad_storage': 'granted'
         });
       }
+      function consentDenied() {
+        
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script> 
+    $(document).ready(function(){
+        $("#panel").slideDown("slow");
+      });
+    });
+    </script>
+    <style> 
+    #panel {
+      padding: 5px;
+      text-align: center;
+      background-color: #e5eecc;
+      border: solid 1px #c3c3c3;
+      padding: 50px;
+      display: none;
+    }
+    </style>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -35,7 +56,7 @@
     <!-- End Google Tag Manager (noscript) -->
     <h1>mbuehler ghpages</h1>
     
-    <div>
+    <div id='panel'>
       <p>Do you consent to our cookies?</p>
       <button onclick="consentGranted">Yes</button>
     </div>
