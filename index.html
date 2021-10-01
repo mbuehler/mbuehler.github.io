@@ -90,21 +90,28 @@
       });
     </script>
     <style> 
-    #cookiePanel {
-      padding: 5px;
-      text-align: center;
-      background-color: #e5eecc;
-      border: solid 1px #c3c3c3;
-      padding: 50px;
-      display: none;
-    }
-    #clearCookieLink {
-      position: fixed;
-      top: 0px;
-      right: 0px;
-      width: 100px;
-      height: 10px;
-    }
+      body {
+        font-family: Arial, sans-serif;
+      }
+      #cookiePanel {
+        text-align: center;
+        background-color: #e5eecc;
+        border: solid 1px #c3c3c3;
+        padding: 50px;
+        display: none;
+        position: absolute;
+        width: 100%;
+        top: 0px;
+        left: 0px;
+        z-index: 1000;
+      }
+      #clearCookieLink {
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        width: 100px;
+        height: 10px;
+      }
     </style>
   </head>
   <body>
