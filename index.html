@@ -26,7 +26,7 @@
       }
 
       if (document.cookie.replace(/(?:(?:^|.*;\s*)consentStatus\s*\=\s*([^;]*).*$)|^.*$/, "$1") == "granted") {
-        alert('Granted');
+        //alert('Granted');
         gtag('consent', 'update', {
           'ad_storage': 'granted',
           'analytics_storage': 'granted'
@@ -35,7 +35,7 @@
           'event': 'allow_consent'
         });
       } else {
-        alert('Denied or Undefined');
+        //alert('Denied or Undefined');
         gtag('consent', 'default', {
           'ad_storage': 'denied',
           'analytics_storage': 'denied'
@@ -61,7 +61,7 @@
         if (document.cookie.replace(/(?:(?:^|.*;\s*)consentCookie\s*\=\s*([^;]*).*$)|^.*$/, "$1") !== "true") {     
           $("#cookiePanel").slideDown("slow");
           $('#btnConsentGranted').click(function() {
-            alert('You have agreed');
+            //alert('You have agreed');
             $("#cookiePanel").slideUp("slow");
             gtag('consent', 'update', {
               'ad_storage': 'granted',
@@ -77,7 +77,7 @@
             location.reload();
           });
           $('#btnConsentDenied').click(function() {
-            alert('You have denied consent');
+            //alert('You have denied consent');
             $("#cookiePanel").slideUp("slow");
             set_cookie("consentCookie", "true");
             set_cookie("consentStatus", "denied");
