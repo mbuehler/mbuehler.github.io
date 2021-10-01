@@ -37,9 +37,9 @@
               'ad_storage': 'granted',
               'analytics_storage': 'granted'
             });
-//             dataLayer.push({
-//               'event': 'update_consent'
-//             });
+            dataLayer.push({
+              'event': 'update_consent'
+            });
             document.cookie = "consentCookie=true; path=/";
           });
           $('#btnConsentDenied').click(function() {
