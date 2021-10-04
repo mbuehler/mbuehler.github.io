@@ -56,7 +56,7 @@ function clearAndReload() {
 }
 
 if (getCookie("consentStatus") === "granted") {
-  alert('Tracking is on');
+  //alert('Tracking is on');
   gtag('consent', 'update', {
     'ad_storage'        : 'granted',
     'analytics_storage' : 'granted',
@@ -66,7 +66,7 @@ if (getCookie("consentStatus") === "granted") {
     'event': 'allow_consent'
   });
 } else {
-  alert('Tracking is off');
+  //alert('Tracking is off');
   gtag('consent', 'default', {
     'ad_storage'        : 'denied',
     'analytics_storage' : 'denied',
