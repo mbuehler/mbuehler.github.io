@@ -23,23 +23,23 @@ THE SOFTWARE.
 // Define dataLayer and the gtag function.
 window.dataLayer = window.dataLayer || [];
 
-function gtag(){dataLayer.push(arguments);}
+function gtag(){ dataLayer.push(arguments); }
 
-function deleteAllCookies() {
-  delete_cookie("consentCookie");
-  delete_cookie("consentStatus");
+function clearConsentCookies() {
+  clear_cookie("consentCookie");
+  clear_cookie("consentStatus");
 }
 
 function set_cookie(name, value) {
   document.cookie = name +'='+ value +'; Path=/;';
 }
 
-function delete_cookie(name) {
+function clear_cookie(name) {
   document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
 function clearAndReload() {
-    deleteAllCookies();
+    clearConsentCookies();
     location.reload();
 }
 
