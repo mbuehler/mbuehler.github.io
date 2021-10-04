@@ -1,50 +1,12 @@
 <html>
   <head>
     <title>mbuehler testing</title>
-    <script>
-      // Define dataLayer and the gtag function.
-      window.dataLayer = window.dataLayer || [];
-      
-      function gtag(){dataLayer.push(arguments);}
-      
-      function deleteAllCookies() {
-        delete_cookie("consentCookie");
-        delete_cookie("consentStatus");
+    <style> 
+      body {
+        font-family: Arial, sans-serif;
       }
-      
-      function set_cookie(name, value) {
-        document.cookie = name +'='+ value +'; Path=/;';
-      }
-      
-      function delete_cookie(name) {
-        document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-      }
+    </style>
 
-      function clearAndReload() {
-          deleteAllCookies();
-          location.reload();
-      }
-
-      if (document.cookie.replace(/(?:(?:^|.*;\s*)consentStatus\s*\=\s*([^;]*).*$)|^.*$/, "$1") == "granted") {
-        alert('Google is watching you!');
-        gtag('consent', 'update', {
-          'ad_storage': 'granted',
-          'analytics_storage': 'granted'
-        });
-        dataLayer.push({
-          'event': 'allow_consent'
-        });
-      } else {
-        alert('No Analytics for you!');
-        gtag('consent', 'default', {
-          'ad_storage': 'denied',
-          'analytics_storage': 'denied'
-        });
-        dataLayer.push({
-          'event': 'default_consent'
-        });
-      } 
-    </script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -53,80 +15,28 @@
     })(window,document,'script','dataLayer','GTM-5WVL674');</script>
     <!-- End Google Tag Manager -->
     
-    <!-- Update this section based on your business requirements -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script> 
-      $(document).ready(function(){
-        
-        if (document.cookie.replace(/(?:(?:^|.*;\s*)consentCookie\s*\=\s*([^;]*).*$)|^.*$/, "$1") !== "true") {     
-          $("#cookiePanel").slideDown("slow");
-          $('#btnConsentGranted').click(function() {
-            //alert('You have agreed');
-            $("#cookiePanel").slideUp("slow");
-            gtag('consent', 'update', {
-              'ad_storage': 'granted',
-              'analytics_storage': 'granted'
-            });
-            dataLayer.push({
-              'event': 'update_consent'
-            });
-            set_cookie("consentCookie", "true");
-            set_cookie("consentStatus", "granted");
-//            document.cookie = "consentCookie=true; path=/";
-//            document.cookie = "consentStatus=granted; path=/";
-            location.reload();
-          });
-          $('#btnConsentDenied').click(function() {
-            //alert('You have denied consent');
-            $("#cookiePanel").slideUp("slow");
-            set_cookie("consentCookie", "true");
-            set_cookie("consentStatus", "denied");
-//            document.cookie = "consentCookie=true; path=/";
-//            document.cookie = "consentStatus=denied; path=/";
-            location.reload();
-          });
-        }
-        
-      });
-    </script>
-    <style> 
-      body {
-        font-family: Arial, sans-serif;
-      }
-      #cookiePanel {
-        text-align: center;
-        background-color: #e5eecc;
-        border: solid 1px #c3c3c3;
-        padding: 50px;
-        display: none;
-        position: absolute;
-        width: 100%;
-        top: 0px;
-        left: 0px;
-        z-index: 1000;
-      }
-      #clearCookieLink {
-        position: fixed;
-        top: 0px;
-        right: 0px;
-        width: 150px;
-        height: 10px;
-      }
-    </style>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5WVL674"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./cookiepanel.js"></script>
+    <link rel="stylesheet" href="cookiepanel.css" />
     <div id='cookiePanel'>
-      <p>Do you consent to our cookies?</p>
-      <button id="btnConsentDenied">No</button>
-      <button id="btnConsentGranted">Yes</button>
+      Do you consent to our use of cookies on this site?
+      <button id="btnConsentGranted" class="btnConsent">Yes</button>
+      <button id="btnConsentDenied" class="btnConsent">No</button>
     </div>
     <div id="clearCookieLink">
       <a href="javascript:clearAndReload();">Clear Cookies</a>
     </div>
+
+
     
     <h1>mbuehler testing</h1>
     <div style='height:1000;'>
