@@ -23,15 +23,27 @@ THE SOFTWARE.
 // Define dataLayer and the gtag function.
 window.dataLayer = window.dataLayer || [];
 
-function gtag(){ dataLayer.push(arguments); }
-
-function clearConsentCookies() {
-  clear_cookie("consentCookie");
-  clear_cookie("consentStatus");
-}
+function gtag(){dataLayer.push(arguments);}
 
 function set_cookie(name, value) {
   document.cookie = name +'='+ value +'; Path=/;';
+}
+
+function getCookie(c_name) {
+    var c_value = document.cookie,
+        c_start = c_value.indexOf(" " + c_name + "=");
+    if (c_start == -1) c_start = c_value.indexOf(c_name + "=");
+    if (c_start == -1) {
+        c_value = null;
+    } else {
+        c_start = c_value.indexOf("=", c_start) + 1;
+        var c_end = c_value.indexOf(";", c_start);
+        if (c_end == -1) {
+            c_end = c_value.length;
+        }
+        c_value = unescape(c_value.substring(c_start, c_end));
+    }
+    return c_value;
 }
 
 function clear_cookie(name) {
@@ -39,12 +51,12 @@ function clear_cookie(name) {
 }
 
 function clearAndReload() {
-    clearConsentCookies();
+    clear_cookie("consentStatus");
     location.reload();
 }
 
-if (document.cookie.replace(/(?:(?:^|.*;\s*)consentStatus\s*\=\s*([^;]*).*$)|^.*$/, "$1") == "granted") {
-  // alert('Google is watching you!');
+if (getCookie("consentStatus") === "granted") {
+  alert('Tracking is on');
   gtag('consent', 'update', {
     'ad_storage'        : 'granted',
     'analytics_storage' : 'granted',
@@ -54,7 +66,7 @@ if (document.cookie.replace(/(?:(?:^|.*;\s*)consentStatus\s*\=\s*([^;]*).*$)|^.*
     'event': 'allow_consent'
   });
 } else {
-  // alert('No Analytics for you!');
+  alert('Tracking is off');
   gtag('consent', 'default', {
     'ad_storage'        : 'denied',
     'analytics_storage' : 'denied',
@@ -67,27 +79,25 @@ if (document.cookie.replace(/(?:(?:^|.*;\s*)consentStatus\s*\=\s*([^;]*).*$)|^.*
 
 $(document).ready(function(){
   
-  if (document.cookie.replace(/(?:(?:^|.*;\s*)consentCookie\s*\=\s*([^;]*).*$)|^.*$/, "$1") !== "true") {     
+  if (!getCookie('consentStatus')) {     
     $("#cookiePanel").slideDown("slow");
     $('#btnConsentGranted').click(function() {
       //alert('You have agreed');
       $("#cookiePanel").slideUp("slow");
       gtag('consent', 'update', {
-        'ad_storage'        : 'granted',
-        'analytics_storage' : 'granted',
+        'ad_storage': 'granted',
+        'analytics_storage': 'granted',
         'linkedin_insight'  : 'granted'
       });
       dataLayer.push({
         'event': 'update_consent'
       });
-      set_cookie("consentCookie", "true");
       set_cookie("consentStatus", "granted");
       location.reload();
     });
     $('#btnConsentDenied').click(function() {
       //alert('You have denied consent');
       $("#cookiePanel").slideUp("slow");
-      set_cookie("consentCookie", "true");
       set_cookie("consentStatus", "denied");
       location.reload();
     });
