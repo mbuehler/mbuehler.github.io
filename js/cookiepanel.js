@@ -47,7 +47,8 @@ if (document.cookie.replace(/(?:(?:^|.*;\s*)consentStatus\s*\=\s*([^;]*).*$)|^.*
   // alert('Google is watching you!');
   gtag('consent', 'update', {
     'ad_storage'        : 'granted',
-    'analytics_storage' : 'granted'
+    'analytics_storage' : 'granted',
+    'linkedin_insight'  : 'granted'
   });
   dataLayer.push({
     'event': 'allow_consent'
@@ -56,7 +57,8 @@ if (document.cookie.replace(/(?:(?:^|.*;\s*)consentStatus\s*\=\s*([^;]*).*$)|^.*
   // alert('No Analytics for you!');
   gtag('consent', 'default', {
     'ad_storage'        : 'denied',
-    'analytics_storage' : 'denied'
+    'analytics_storage' : 'denied',
+    'linkedin_insight'  : 'denied'
   });
   dataLayer.push({
     'event': 'default_consent'
@@ -71,8 +73,9 @@ $(document).ready(function(){
       //alert('You have agreed');
       $("#cookiePanel").slideUp("slow");
       gtag('consent', 'update', {
-        'ad_storage': 'granted',
-        'analytics_storage': 'granted'
+        'ad_storage'        : 'granted',
+        'analytics_storage' : 'granted',
+        'linkedin_insight'  : 'granted'
       });
       dataLayer.push({
         'event': 'update_consent'
