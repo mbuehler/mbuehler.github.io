@@ -44,7 +44,7 @@ function clearAndReload() {
 }
 
 if (document.cookie.replace(/(?:(?:^|.*;\s*)consentStatus\s*\=\s*([^;]*).*$)|^.*$/, "$1") == "granted") {
-  alert('Google is watching you!');
+  // alert('Google is watching you!');
   gtag('consent', 'update', {
     'ad_storage'        : 'granted',
     'analytics_storage' : 'granted'
@@ -53,7 +53,7 @@ if (document.cookie.replace(/(?:(?:^|.*;\s*)consentStatus\s*\=\s*([^;]*).*$)|^.*
     'event': 'allow_consent'
   });
 } else {
-  alert('No Analytics for you!');
+  // alert('No Analytics for you!');
   gtag('consent', 'default', {
     'ad_storage'        : 'denied',
     'analytics_storage' : 'denied'
