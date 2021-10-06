@@ -9,7 +9,8 @@ var aryCookies = {
   "linkedin_insight"  : "denied" 
 };
 
-var domain = getDomainName(getDomain(window.location.href,true));
+//var domain = getDomainName(getDomain(window.location.href,true));
+var domain = getDomain(window.location.href,true);
 var sdomain = getDomainName(getDomain(window.location.href,false));
 alert(domain);
 alert(sdomain);
