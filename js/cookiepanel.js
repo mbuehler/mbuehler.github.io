@@ -10,6 +10,9 @@ var aryCookies = {
 };
 
 var domain = getDomainName(getDomain(window.location.href,true));
+var sdomain = getDomainName(getDomain(window.location.href,false));
+alert(domain);
+alert(sdomain);
 
 function gtag(){dataLayer.push(arguments);}
 
