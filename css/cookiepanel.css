@@ -34,9 +34,16 @@
 #clearCookieLink {
   position: fixed;
   top: 0px;
+  margin: 5px;
   right: 0px;
   width: 150px;
-  height: 10px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.3);
 }
 #btnConsentGranted {
   background-color: #00B1FF;; /* OGC Blue */
