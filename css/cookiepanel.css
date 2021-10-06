@@ -39,7 +39,7 @@
   height: 10px;
 }
 #btnConsentGranted {
-  background-color: #4CAF50; /* Green */
+  background-color: #00B1FF;; /* OGC Blue */
   color: white;
 }
 #btnConsentDenied {
@@ -100,11 +100,11 @@
 }
 
 input:checked + .slider {
-  background-color: #4CAF50;
+  background-color: #00B1FF;;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #4CAF50;
+  box-shadow: 0 0 1px #00B1FF;;
 }
 
 input:checked + .slider:before {
