@@ -59,7 +59,7 @@
         font-family: Mont-Bold;
       }
       .mont_semibold {
-        font-family: Mont-Semibold;
+        font-family: Mont-Semibold, Mont-SemiboldTT, Arial, Sans-Serif;
         font-size:  1.5em;
       }
       .mont_heavy {
