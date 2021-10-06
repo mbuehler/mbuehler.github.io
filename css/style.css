@@ -15,6 +15,12 @@
         font-weight:  normal;
         src: url("../font/Mont-Semibold.otf") format("opentype");
       }
+        
+      @font-face {
+        font-family: Mont-SemiboldTT;
+        font-weight:  normal;
+        src: url("../font/Mont-Semibold.ttf") format("truetype");
+      }
 
       @font-face {
         font-family: Mont-Heavy;
@@ -37,7 +43,7 @@
         color: #00B1FF;
       }
       h2 { 
-        font-family: Mont-Semibold;
+        font-family: Mont-Semibold, Mont-SemiboldTT, Arial, Sans-Serif;
         font-size: 24px;
         color: #00B1FF;
       }
