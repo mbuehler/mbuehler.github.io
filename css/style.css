@@ -1,0 +1,67 @@
+@font-face {
+        font-family: Mont-Regular;
+        font-weight:  normal;
+        src: url("font/Mont-Regular.otf") format("opentype");
+      }
+
+      @font-face {
+        font-family: Mont-Bold;
+        font-weight: normal;
+        src: url("font/Mont-Bold.otf") format("opentype");
+      }
+
+      @font-face {
+        font-family: Mont-Semibold;
+        font-weight:  normal;
+        src: url("font/Mont-Semibold.otf") format("opentype");
+      }
+
+      @font-face {
+        font-family: Mont-Heavy;
+        font-weight:  normal;
+        src: url("font/Mont-Heavy.otf") format("opentype");
+      }
+      body {
+        font-family: Mont-Regular, sans-serif;
+        color: #B9C1C6;
+      }
+
+      a {
+        color: #0580DA;
+      }
+      a:hover { color: #66E2FF; }
+
+      h1 { 
+        font-family: Mont-Bold;
+        font-size: 32px;
+        color: #00B1FF;
+      }
+      h2 { 
+        font-family: Mont-Semibold;
+        font-size: 24px;
+        color: #00B1FF;
+      }
+      h3 { 
+        font-family: Mont-Heavy;
+        font-size: 18px;
+        color: #00B1FF;
+      }
+      strong, b {
+        font-family: Mont-Bold;
+      }
+      .mont_bold {
+        font-family: Mont-Bold;
+      }
+      .mont_semibold {
+        font-family: Mont-Semibold;
+        font-size:  1.5em;
+      }
+      .mont_heavy {
+        font-family:  Mont-Heavy;
+        text-transform: uppercase;
+        letter-spacing: .25em;
+      }
+      .ogc_blue {
+        color: #00B1FF;
+      }
+      
