@@ -1,32 +1,20 @@
-/*
-Copyright (C) 2021 by Mark Buehler <markbuehler@gmail.com> and others
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-*/
-
 // Define dataLayer and the gtag function.
 window.dataLayer = window.dataLayer || [];
+
+var debug = false;
+var gaID  = "NRGR83XCFZ";
+var aryCookies = { 
+  "ad_storage"        : "denied", 
+  "analytics_storage" : "denied", 
+  "linkedin_insight"  : "denied" 
+};
+
+var domain = getDomainName(getDomain(window.location.href,true));
 
 function gtag(){dataLayer.push(arguments);}
 
 function set_cookie(name, value) {
-  document.cookie = name +'='+ value +'; Path=/;';
+  document.cookie = name +'='+ value +'; Path=/; domain=' + domain + ';';
 }
 
 function getCookie(c_name) {
@@ -46,60 +34,88 @@ function getCookie(c_name) {
     return c_value;
 }
 
-function clear_cookie(name) {
-  document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+function getDomain(url, subdomain) {
+  subdomain = subdomain || false;
+  url = url.replace(/(https?:\/\/)?(www.)?/i, '');
+  if (!subdomain) {
+    url = url.split('.');
+    url = url.slice(url.length - 2).join('.');
+  }
+  if (url.indexOf('/') !== -1) {
+    return url.split('/')[0];
+  }
+  return url;
+}
+
+function getDomainName(hostName) {
+  return hostName.substring(hostName.lastIndexOf(".", hostName.lastIndexOf(".") - 1) + 1);
+}
+
+function deleteAllCookies() {
+  var cookies = document.cookie.split(";");
+  for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i];
+    var eqPos = cookie.indexOf("=");
+    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; Domain=" + domain + ";";
+  }
 }
 
 function clearAndReload() {
-    clear_cookie("consentStatus");
-    location.reload();
+  deleteAllCookies();
+  location.reload();
 }
 
 if (getCookie("consentStatus") === "granted") {
-  //alert('Tracking is on');
-  gtag('consent', 'update', {
-    'ad_storage'        : 'granted',
-    'analytics_storage' : 'granted',
-    'linkedin_insight'  : 'granted'
-  });
+  if(debug) { alert('Tracking is on'); }
+  for (var key in aryCookies) {
+    var cookiecheck = getCookie(key) === "granted" ? "granted" : "denied";
+    aryCookies[key] = cookiecheck;
+    if(debug) { alert(key + ': ' + aryCookies[key]); }
+  }
+  gtag('consent', 'update', aryCookies);
   dataLayer.push({
     'event': 'allow_consent'
   });
 } else {
-  //alert('Tracking is off');
-  gtag('consent', 'default', {
-    'ad_storage'        : 'denied',
-    'analytics_storage' : 'denied',
-    'linkedin_insight'  : 'denied'
-  });
-  dataLayer.push({
-    'event': 'default_consent'
-  });
+  if(getCookie("consentStatus") === "denied") {
+    if(debug) { alert('Tracking is turned off'); }
+  } else {
+    if(debug) { alert('Tracking is not yet determined');}
+  }
+  for (var key in aryCookies) { aryCookies[key] = "denied"; }
+  gtag('consent', 'default', aryCookies);
+  dataLayer.push({ 'event': 'default_consent' });
 } 
 
 $(document).ready(function(){
   
   if (!getCookie('consentStatus')) {     
     $("#cookiePanel").slideDown("slow");
+
     $('#btnConsentGranted').click(function() {
-      //alert('You have agreed');
+      if(debug) { alert('You have agreed'); }
       $("#cookiePanel").slideUp("slow");
-      gtag('consent', 'update', {
-        'ad_storage': 'granted',
-        'analytics_storage': 'granted',
-        'linkedin_insight'  : 'granted'
-      });
-      dataLayer.push({
-        'event': 'update_consent'
-      });
       set_cookie("consentStatus", "granted");
+      for (var key in aryCookies) {
+        aryCookies[key] = $("#opt_" + key).is(":checked") ? "granted" : "denied";
+        set_cookie(key, aryCookies[key]);
+        if(debug) { alert(key + ': ' + aryCookies[key]); }
+      }
+      gtag('consent', 'update', aryCookies);
+      dataLayer.push({ 'event': 'update_consent' });
       location.reload();
     });
+
     $('#btnConsentDenied').click(function() {
-      //alert('You have denied consent');
+      if(debug) { alert('You have denied consent'); }
       $("#cookiePanel").slideUp("slow");
       set_cookie("consentStatus", "denied");
       location.reload();
+    });
+
+    $('#detailToggle').click(function() {
+      $("#detailPanel").toggle();
     });
   }
   
